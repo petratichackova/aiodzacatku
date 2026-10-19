@@ -1,0 +1,13 @@
+# Repozitář je veřejný (GitHub Pages). Sem patří jen to, co je na webu.
+
+# Interní poznámky a podklady – zůstávají jen v second brainu
+CLAUDE.md
+podklady/
+panely/
+wireframe.html
+
+# Původní fotka s rozpoznatelnými posluchači – na web jde jen ořez
+assets/foto/petra-prednaska-2.jpg
+
+# Systémové soubory macOS
+.DS_Store

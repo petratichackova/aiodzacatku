@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI od začátku – praktické AI workshopy pro začátečníky</title>
+<meta name="description" content="Praktické workshopy pro školy, úřady a firmy. Od úplných základů, bez složitých pojmů a s důrazem na využití AI v každodenní práci. Srozumitelně. Lidsky. Krok za krokem.">
+<link rel="canonical" href="https://aiodzacatku.cz/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:url" content="https://aiodzacatku.cz/">
+<meta property="og:title" content="AI od začátku – AI nemusí být věda.">
+<meta property="og:description" content="Praktické AI workshopy pro školy, úřady a firmy. Srozumitelně. Lidsky. Krok za krokem.">
+<!-- [DOPLNIT: og:image – náhledový obrázek pro sdílení z loga (PNG 1200×630), až bude schválený] -->
+<meta name="theme-color" content="#365B50">
+<link rel="icon" href="assets/logo/favicon-web.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/dm-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* DM Sans, lokálně (OFL). latin + latin-ext kvůli češtině. */
+  @font-face { font-family: 'DM Sans'; font-weight: 400; font-display: swap; src: url(assets/fonts/dm-sans-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'DM Sans'; font-weight: 400; font-display: swap; src: url(assets/fonts/dm-sans-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'DM Sans'; font-weight: 600; font-display: swap; src: url(assets/fonts/dm-sans-latin-600-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'DM Sans'; font-weight: 600; font-display: swap; src: url(assets/fonts/dm-sans-latin-ext-600-normal.woff2) format('woff2'); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'DM Sans'; font-weight: 700; font-display: swap; src: url(assets/fonts/dm-sans-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'DM Sans'; font-weight: 700; font-display: swap; src: url(assets/fonts/dm-sans-latin-ext-700-normal.woff2) format('woff2'); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+  /* Barvy a váhy podle brand manuálu (podklady/brand-tokens.css) */
+  :root {
+    --brand-forest-green: #365B50;
+    --brand-soft-peach: #F4C5AD;
+    --brand-warm-cream: #FFFAF5;
+    --brand-sage: #E3EBD8;
+    --brand-soft-lilac: #E9E2F1;
+    --brand-butter-yellow: #F6E8B8;
+    --brand-charcoal: #4E514C;
+    --brand-white: #FFFFFF;
+    --font-brand: 'DM Sans', Arial, sans-serif;
+    --font-regular: 400;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --layout-max-width: 1120px;
+    --radius-card: 16px;
+    --radius-button: 12px;
+
+    --green-dark: #2A483F;   /* hover tlačítek (tmavší odstín zelené) */
+    --line: #D9DFD0;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+  body { margin: 0; font-family: var(--font-brand); font-weight: var(--font-regular); font-size: 1.0625rem; line-height: 1.6; color: var(--brand-charcoal); background: var(--brand-warm-cream); -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--brand-forest-green); text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--brand-forest-green); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { max-width: var(--layout-max-width); margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { color: var(--brand-forest-green); line-height: 1.15; margin: 0 0 .5em; }
+  h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); font-weight: var(--font-bold); letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: var(--font-bold); letter-spacing: -0.01em; }
+  h3 { font-size: 1.15rem; font-weight: var(--font-semibold); }
+  p { margin: 0 0 1em; }
+  .lead { font-size: 1.2rem; }
+  .strong { font-weight: var(--font-semibold); color: var(--brand-forest-green); }
+  .prose { max-width: 680px; }
+  .kicker { display: inline-flex; gap: .6rem; align-items: center; font-weight: var(--font-semibold); font-size: .95rem; letter-spacing: .02em; color: var(--brand-forest-green); margin-bottom: .75rem; }
+  .kicker::before { content: ""; width: 28px; height: 3px; border-radius: 2px; background: var(--brand-soft-peach); }
+
+  /* Placeholder pro chybějící / neověřený obsah – viditelně */
+  .ph { font-weight: var(--font-semibold); background: var(--brand-butter-yellow); color: var(--brand-charcoal); padding: 0 5px; border-radius: 4px; }
+
+  .skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--brand-forest-green); color: var(--brand-white); padding: 10px 16px; border-radius: var(--radius-button); font-weight: var(--font-semibold); }
+  .skip:focus { top: 12px; }
+
+  section { padding: clamp(56px, 9vw, 104px) 0; }
+  .band { background: var(--brand-sage); }
+
+  .btn { display: inline-flex; align-items: center; gap: .5rem; min-height: 48px; padding: 12px 22px; border-radius: var(--radius-button); background: var(--brand-forest-green); color: var(--brand-white); font-weight: var(--font-semibold); text-decoration: none; transition: background-color .15s ease; }
+  .btn:hover { background: var(--green-dark); }
+  .btn.ghost { background: transparent; color: var(--brand-forest-green); border: 2px solid var(--brand-forest-green); }
+  .btn.ghost:hover { background: var(--brand-forest-green); color: var(--brand-white); }
+
+  .grid { display: grid; gap: 20px; }
+  .card { background: var(--brand-white); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 24px; }
+  .band .card { border-color: transparent; }
+  .icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 14px; color: var(--brand-forest-green); background: var(--brand-sage); }
+  .icon.peach { background: var(--brand-soft-peach); }
+  .icon.lilac { background: var(--brand-soft-lilac); }
+  .icon.butter { background: var(--brand-butter-yellow); }
+  .icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 0 · Hlavička */
+  .site-head { position: sticky; top: 0; z-index: 20; background: rgba(255, 250, 245, .94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+  .site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 68px; }
+  .site-head .logo img { height: 40px; width: auto; }
+  .site-head nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
+  .site-head nav a { display: block; padding: 10px; border-radius: 8px; color: var(--brand-forest-green); font-weight: var(--font-semibold); text-decoration: none; font-size: .98rem; }
+  .site-head nav a:hover { background: var(--brand-sage); }
+
+  /* 1 · Hero */
+  .hero { padding-top: clamp(40px, 7vw, 88px); }
+  .hero .wrap { display: grid; gap: 40px; align-items: center; }
+  .hero h1 .u { background: linear-gradient(transparent 68%, var(--brand-soft-peach) 68%, var(--brand-soft-peach) 92%, transparent 92%); padding: 0 .05em; }
+  .hero .claim { font-size: clamp(1.15rem, 2.4vw, 1.4rem); font-weight: var(--font-semibold); color: var(--brand-forest-green); margin-bottom: 1rem; }
+  .hero-art { position: relative; aspect-ratio: 1; max-width: 280px; width: 100%; justify-self: center; }
+  .hero-art span { position: absolute; }
+  .hero-art .b1 { inset: 4% 8% 10% 2%; background: var(--brand-soft-lilac); border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; }
+  .hero-art .b2 { width: 34%; aspect-ratio: 1; right: 0; top: 2%; background: var(--brand-soft-peach); border-radius: 50%; }
+  .hero-art .b3 { width: 22%; aspect-ratio: 1; left: 6%; bottom: 2%; background: var(--brand-sage); border-radius: 50%; }
+  .hero-art .b4 { width: 12%; aspect-ratio: 1; right: 14%; bottom: 10%; background: var(--brand-butter-yellow); border-radius: 50%; }
+  .hero-art img { position: absolute; inset: 22%; width: 56%; filter: drop-shadow(0 12px 24px rgba(54, 91, 80, .15)); }
+
+  .pain .card p { margin: 0; font-size: 1rem; }
+
+  /* 4 · Workshop: přínosy jako schody (motiv loga) */
+  .steps { counter-reset: s; }
+  .steps .card { position: relative; padding-top: 60px; }
+  .steps .card::before { counter-increment: s; content: counter(s); position: absolute; top: 20px; left: 24px; width: 30px; height: 30px; border-radius: 50%; background: var(--brand-forest-green); color: var(--brand-white); font-weight: var(--font-bold); font-size: .95rem; display: grid; place-items: center; }
+  .how { background: var(--brand-white); border-radius: var(--radius-card); padding: clamp(24px, 4vw, 40px); margin-top: 48px; display: grid; gap: 24px; }
+  .how dl { margin: 0; }
+  .how dl div { display: grid; gap: 2px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .how dt { font-weight: var(--font-semibold); color: var(--brand-forest-green); }
+  .how dd { margin: 0; }
+
+  /* 6 · Kdo jsme */
+  .people { display: grid; gap: 28px; margin-top: 40px; }
+  .person { background: var(--brand-white); border-radius: var(--radius-card); overflow: hidden; }
+  .person .photo { aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 22%; width: 100%; background: var(--brand-soft-lilac); }
+  .person .body { padding: 24px; }
+  .person h3 { font-size: 1.4rem; margin-bottom: .2rem; }
+  .person .role { font-size: .95rem; margin-bottom: 1rem; }
+  .person blockquote { margin: 0 0 1.25rem; padding-left: 16px; border-left: 3px solid var(--brand-soft-peach); font-size: 1rem; }
+  .person .li { font-weight: var(--font-semibold); }
+  /* Galerie z přednášek: další fotka = další <figure>, mřížka se přizpůsobí sama */
+  .gallery { margin-top: 48px; }
+  .gallery h3 { font-size: 1.4rem; }
+  .gallery ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .gallery figure { margin: 0; }
+  .gallery img { aspect-ratio: 3 / 4; width: 100%; object-fit: cover; border-radius: var(--radius-card); background: var(--brand-white); }
+  .gallery figcaption { font-size: .9rem; margin-top: 6px; }
+  @media (min-width: 720px) { .gallery ul { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
+
+  /* 7 · CTA */
+  .cta { text-align: center; }
+  .cta .box { position: relative; overflow: hidden; background: var(--brand-forest-green); color: var(--brand-white); border-radius: 24px; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 64px); }
+  .cta .box::before, .cta .box::after { content: ""; position: absolute; border-radius: 50%; opacity: .14; pointer-events: none; }
+  .cta .box::before { width: 260px; height: 260px; background: var(--brand-soft-peach); left: -90px; top: -110px; }
+  .cta .box::after { width: 200px; height: 200px; background: var(--brand-sage); right: -70px; bottom: -90px; }
+  .cta h2 { color: var(--brand-white); position: relative; }
+  .cta p { max-width: 620px; margin-left: auto; margin-right: auto; position: relative; }
+  .cta .btn { background: var(--brand-warm-cream); color: var(--brand-forest-green); position: relative; }
+  .cta .btn:hover { background: var(--brand-white); }
+  .cta .mail { display: inline-block; margin-top: 16px; color: var(--brand-white); font-weight: var(--font-semibold); position: relative; }
+  .cta :focus-visible { outline-color: var(--brand-white); }
+
+  /* 8 · Patička */
+  .site-foot { background: var(--brand-forest-green); color: var(--brand-warm-cream); padding: 48px 0 32px; margin-top: clamp(56px, 9vw, 104px); font-size: .95rem; }
+  .site-foot .wrap { display: grid; gap: 24px; }
+  .site-foot img { width: 220px; }
+  .site-foot a { color: var(--brand-white); }
+  .site-foot p { margin: 0 0 .35rem; }
+  .site-foot :focus-visible { outline-color: var(--brand-white); }
+
+  @media (min-width: 720px) {
+    .pain .grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .why .grid { grid-template-columns: repeat(3, 1fr); }
+    .how { grid-template-columns: 1fr 2fr; }
+    .how dl div { grid-template-columns: 180px 1fr; gap: 16px; }
+    .site-foot .wrap { grid-template-columns: 260px 1fr; }
+  }
+  @media (min-width: 960px) {
+    .hero .wrap { grid-template-columns: 1.25fr 1fr; }
+    .hero-art { max-width: 420px; }
+    .pain .grid { grid-template-columns: repeat(4, 1fr); }
+    /* Schody: všechny karty stejně vysoké, každá o 28 px výš než předchozí */
+    .steps { grid-template-columns: repeat(4, 1fr); align-items: stretch; padding-top: 84px !important; }
+    .steps .card:nth-child(2) { transform: translateY(-28px); }
+    .steps .card:nth-child(3) { transform: translateY(-56px); }
+    .steps .card:nth-child(4) { transform: translateY(-84px); }
+    .people { grid-template-columns: 1fr 1fr; align-items: start; }
+    .person .photo { aspect-ratio: 1; }
+  }
+  @media (max-width: 420px) {
+    .site-head .logo img { height: 32px; }
+    .site-head nav a { padding: 10px 6px; font-size: .92rem; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+
+<!-- 0 · Hlavička -->
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#obsah" aria-label="AI od začátku – na začátek stránky"><img src="assets/logo/logo-hlavni-web.svg" alt="AI od začátku" width="1324" height="492"></a>
+    <nav aria-label="Hlavní menu">
+      <ul>
+        <li><a href="#uvod">Úvod</a></li>
+        <li><a href="#workshop">Workshop</a></li>
+        <li><a href="#kdo-jsme">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="obsah">
+
+<!-- 1 · Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>AI nemusí být <span class="u">věda.</span></h1>
+      <p class="claim">Srozumitelně. Lidsky. Krok za krokem.</p>
+      <p class="lead prose">Praktické workshopy pro školy, úřady a firmy, které chtějí svým zaměstnancům otevřít dveře do světa umělé inteligence. Od úplných základů, bez zbytečně složitých pojmů a s důrazem na využití v každodenní práci.</p>
+      <a class="btn" href="#workshop">Prohlédnout workshop <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span>
+      <img src="assets/logo/favicon-web.svg" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- 2 · První kroky -->
+<section id="uvod" class="band">
+  <div class="wrap prose">
+    <p class="kicker">Úvod</p>
+    <h2>První kroky s AI? Společně to zvládneme.</h2>
+    <p>O umělé inteligenci se dnes mluví na každém kroku. Možná už jste ji sami vyzkoušeli, možná o ní zatím jen slýcháte. A možná máte pocit, že všichni kolem už vědí, jak s ní pracovat, zatímco vy stále hledáte, kde vlastně začít.</p>
+    <p>Spousta návodů a školení se rovnou pouští do pokročilých funkcí, automatizací a kombinování různých AI nástrojů. Jenže co když potřebujete nejdřív pochopit úplné základy?</p>
+    <p class="lead strong">Právě proto vzniklo AI od začátku.</p>
+    <p>Věříme, že k využívání AI nepotřebujete technické vzdělání ani znalost desítek aplikací. Potřebujete srozumitelné vysvětlení, prostor na otázky a možnost si všechno sami vyzkoušet.</p>
+    <p>A přesně s tím vám chceme pomoci. Bez zbytečného žargonu, bez ostychu a hlavně vlastním tempem.</p>
+  </div>
+</section>
+
+<!-- 3 · Poznáváte se v tom? -->
+<section class="pain">
+  <div class="wrap">
+    <div class="prose">
+      <h2>Poznáváte se v tom?</h2>
+      <p>Víte, že umělá inteligence může vašemu týmu usnadnit práci. Jenže mezi vědomím, že by bylo dobré s AI začít, a jejím skutečným využíváním bývá někdy pořádný kus cesty.</p>
+    </div>
+    <div class="grid" style="margin:32px 0">
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></div>
+        <h3>Nevíme, kde začít</h3><p>Příliš mnoho nástrojů a informací. Chybí nám jednoduchý první krok.</p>
+      </div>
+      <div class="card">
+        <div class="icon peach"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4v-6H4zM10 20h4V9h-4zM16 20h4V4h-4z"/></svg></div>
+        <h3>Každý je na jiné úrovni</h3><p>Někteří už AI zkoušejí, jiní zatím nemají žádné zkušenosti.</p>
+      </div>
+      <div class="card">
+        <div class="icon butter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></div>
+        <h3>Nevíme, k čemu AI využít</h3><p>Chybí nám konkrétní příklady pro využití v naší každodenní praxi.</p>
+      </div>
+      <div class="card">
+        <div class="icon lilac"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Máme otázky kolem bezpečnosti</h3><p>Chceme vědět, co do AI zadávat a jak ověřovat její odpovědi.</p>
+      </div>
+    </div>
+    <p class="lead strong">Poznáváte v některé z těchto situací sebe nebo svůj tým? Pak jste tu správně.</p>
+    <a class="btn ghost" href="#workshop">Jak vám pomůžeme <span aria-hidden="true">↓</span></a>
+  </div>
+</section>
+
+<!-- 4 · Workshop -->
+<section id="workshop" class="band">
+  <div class="wrap">
+    <div class="prose">
+      <p class="kicker">Workshop</p>
+      <h2>Workshop AI od začátku</h2>
+      <p class="lead strong">První kroky s umělou inteligencí. Prakticky, srozumitelně a bez obav.</p>
+      <p>Náš workshop je určený všem, kteří chtějí začít využívat AI ve své práci, ale zatím nevědí, jak na to. Ať už s AI nemají žádné zkušenosti, nebo ji párkrát vyzkoušeli, ale chtěli by se ve využívání posunout dál.</p>
+      <p>Nebudeme vás zahlcovat složitými technologiemi ani desítkami aplikací. Začneme od úplných základů, společně si všechno vyzkoušíme a ukážeme si, jak může AI pomáhat při skutečných pracovních úkolech.</p>
+    </div>
+
+    <h3 style="font-size:1.4rem;margin-top:40px">Co si z workshopu odnesete?</h3>
+    <ol class="grid steps" style="list-style:none;padding:0;margin:0">
+      <li class="card"><h3>Zorientujete se ve světě AI</h3><p>Pochopíte, co umělá inteligence umí, kde má své limity a jak s ní začít pracovat. Bez složitých technických pojmů.</p></li>
+      <li class="card"><h3>Naučíte se s AI komunikovat</h3><p>Ukážeme si, jak AI srozumitelně zadávat úkoly, jak se doptávat a jak postupně vylepšovat její odpovědi, aby byly opravdu užitečné.</p></li>
+      <li class="card"><h3>Vyzkoušíte si AI na vlastní práci</h3><p>Od přípravy výukových materiálů přes administrativu až po každodenní pracovní komunikaci. Budeme pracovat s příklady, které dávají smysl právě vašemu týmu.</p></li>
+      <li class="card"><h3>Zjistíte, jak AI používat bezpečně</h3><p>Vysvětlíme si, jaké informace do AI nezadávat, proč není dobré všemu bezvýhradně věřit a jak její výstupy kontrolovat.</p></li>
+    </ol>
+
+    <div class="how">
+      <div>
+        <h3 style="font-size:1.4rem">Jak workshop probíhá?</h3>
+        <p>Budete se ptát, zkoušet, objevovat a postupně získávat jistotu.</p>
+      </div>
+      <dl>
+        <div><dt>Pro koho</dt><dd>Úplní začátečníci a ti, kteří už AI vyzkoušeli, ale zatím ji pravidelně nepoužívají.</dd></div>
+        <div><dt>Délka</dt><dd>3–4 hodiny</dd></div>
+        <div><dt>Forma</dt><dd>Interaktivní prezenční workshop přímo u vás. Navazující setkání je možné i online.</dd></div>
+        <div><dt>Počet účastníků</dt><dd>Dle dohody (ideální jsou skupiny po max. 15 lidech)</dd></div>
+        <div><dt>Co je potřeba</dt><dd>Vlastní notebook, připojení k internetu</dd></div>
+        <div><dt>Obsah na míru</dt><dd>Praktické příklady přizpůsobíme prostředí a potřebám vašeho týmu</dd></div>
+      </dl>
+    </div>
+
+    <p class="prose" style="margin-top:32px">Naším cílem je, abyste z workshopu odcházeli nejen s novými znalostmi, ale hlavně s odvahou a schopností začít AI samostatně používat.</p>
+    <a class="btn" href="#kontakt">Mám zájem o workshop <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- 5 · Proč s námi -->
+<section class="why">
+  <div class="wrap">
+    <div class="prose">
+      <h2>Proč se učit právě s námi?</h2>
+      <p>Protože víme, že dobré školení není o tom, kolik toho lektor stihne říct. Ale kolik si toho účastníci skutečně odnesou.</p>
+    </div>
+    <div class="grid" style="margin-top:32px">
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h5v-5h5V9h6"/></svg></div>
+        <h3>Od úplných základů</h3><p>Žádné přeskakování důležitých kroků. Vše vysvětlujeme srozumitelně, v souvislostech a bez předpokladu předchozích znalostí.</p>
+      </div>
+      <div class="card">
+        <div class="icon peach"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Praxe na prvním místě</h3><p>Méně poslouchání, více zkoušení. AI si sami vyzkoušíte na konkrétních úkolech, které dávají smysl právě ve vaší práci.</p>
+      </div>
+      <div class="card">
+        <div class="icon lilac"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></div>
+        <h3>Lidsky a bez ostychu</h3><p>Vytváříme přátelské prostředí, kde má každá otázka své místo. S trpělivostí, pochopením a respektem k vašemu tempu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · Kdo jsme -->
+<section id="kdo-jsme" class="band">
+  <div class="wrap">
+    <div class="prose">
+      <p class="kicker">Kdo jsme</p>
+      <h2>Dvě lektorky. Jedna společná myšlenka: Začít od začátku.</h2>
+      <p>Jsme Petra a Karolína. Obě pracujeme v technologické společnosti, kde se věnujeme práci s lidmi, jejich rozvojem a předávání zkušeností. Díky naší práci máme blízko k technologiím, vzdělávání i každodenním výzvám, které přinášejí nové nástroje.</p>
+      <p>A právě při školeních a práci s lidmi jsme si uvědomily jednu věc: Aby člověk mohl s novou technologií opravdu začít pracovat, je ideální začít s parťákem, který vám vše ukáže a vysvětlí.</p>
+      <p>Když chybí kontext, jednoduché vysvětlení nebo prostor na otázky, snadno se ztratí i ten, kdo má chuť se učit. A přesně to chceme změnit.</p>
+      <p>Proto vzniklo AI od začátku. Chceme lidem ukázat, že první kroky s umělou inteligencí nemusí být složité ani stresující. Stačí začít srozumitelně, prakticky a vlastním tempem.</p>
+    </div>
+
+    <div class="people">
+      <article class="person">
+        <img class="photo" src="assets/foto/karolina-portret.jpg" alt="Karolína Máchová" width="1172" height="1600" loading="lazy">
+        <div class="body">
+          <h3>Ing. Karolína Máchová</h3>
+          <p class="role">Lektorka v AI od začátku | Projektová manažerka v Alma Career</p>
+          <blockquote>„Znáte ten pocit, kdy někdo vysvětluje něco nového, ale vy máte dojem, že začal tak trochu od prostředka? Já ho znám moc dobře. A právě proto mě strašně baví ten opačný moment. Když se díky jednoduchému vysvětlení, dobrému příkladu nebo správné analogii z ‚vůbec nechápu‘ stane rozzářené ‚jo, ahááá, teď už to dává smysl!‘ Přesně o to se snažíme i na našich workshopech. Vytvořit prostředí, kde se nikdo nemusí stydět zeptat, kde se nic nepřeskakuje a kde každý může naskočit opravdu od začátku.“</blockquote>
+          <a class="li" href="https://www.linkedin.com/in/karolinamachova/" rel="noopener">LinkedIn Karolíny <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+
+      <article class="person">
+        <img class="photo" src="assets/foto/petra-portret.jpg" alt="Petra Ticháčková" width="847" height="1000" loading="lazy">
+        <div class="body">
+          <h3>Ing. Petra Ticháčková</h3>
+          <p class="role">Lektorka v AI od začátku | Team Leader obchodního týmu v Alma Career</p>
+          <blockquote>„Nevěřím na AI jako kouzelné tlačítko. Věřím na AI jako parťáka na přemýšlení. Přes deset let se pohybuju v B2B obchodu a vedu obchodní tým. Od začátku roku 2026 v něm dělám AI mentorku: pravidelně se scházím s kolegy a učím je s AI přemýšlet, ne jen klikat. Krátká sezení, konkrétní úkoly z jejich práce, žádné přednášky o budoucnosti. Nejvíc mě baví chvíle, kdy někdo zjistí, že mu AI ušetřila hodinu na něčem, co dělal léta ručně.“</blockquote>
+          <a class="li" href="https://www.linkedin.com/in/petra-tich%C3%A1%C4%8Dkov%C3%A1-7a145590/" rel="noopener">LinkedIn Petry <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="gallery">
+      <h3>Při přednáškách</h3>
+      <ul>
+        <li><figure>
+          <img src="assets/foto/petra-prednaska-1.jpg" alt="Petra přednáší v sále před plátnem se slidem o práci s AI" width="1200" height="1600" loading="lazy">
+          <figcaption>Petra při přednášce o AI</figcaption>
+        </figure></li>
+        <li><figure>
+          <img src="assets/foto/petra-prednaska-2-orez.jpg" alt="Petra s mikrofonem vysvětluje u promítaného přehledu" width="410" height="547" loading="lazy">
+          <figcaption>Petra při přednášce o AI</figcaption>
+        </figure></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · CTA (jedno tlačítko; varianta škola/úřad/firma čeká na souhlas Karolíny, CLAUDE.md sekce 11) -->
+<section id="kontakt" class="cta">
+  <div class="wrap">
+    <div class="box">
+      <h2>Pojďme společně udělat první krok</h2>
+      <p>Chcete svému týmu ukázat, jak začít využívat AI v každodenní práci? Rády přijedeme i k vám.</p>
+      <p>Napište nám, pro koho workshop plánujete, kolik lidí by se mělo zúčastnit a co byste se chtěli naučit. Společně probereme vaše potřeby a domluvíme se na dalších krocích.</p>
+      <a class="btn" href="mailto:info@aiodzacatku.cz?subject=Popt%C3%A1vka%20workshopu%20AI%20od%20za%C4%8D%C3%A1tku">Napsat nám e-mail <span aria-hidden="true">→</span></a><br>
+      <a class="mail" href="mailto:info@aiodzacatku.cz">info@aiodzacatku.cz</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 8 · Patička -->
+<footer class="site-foot">
+  <div class="wrap">
+    <img src="assets/logo/logo-zelene-pozadi-web.svg" alt="AI od začátku" width="1392" height="580" loading="lazy">
+    <div>
+      <p>Provozovatelka webu a poskytovatelka služeb: Petra Ticháčková</p>
+      <p>IČO: 21931542 · Sídlo: Kukelská 4, 198 00 Praha 9</p>
+      <p>Zapsána v živnostenském rejstříku</p>
+      <p>E-mail: <a href="mailto:info@aiodzacatku.cz">info@aiodzacatku.cz</a> · <a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ochrana osobních údajů – AI od začátku</title>
+<meta name="description" content="Jak AI od začátku zachází s osobními údaji z e-mailů. Web nepoužívá cookies ani měření návštěvnosti.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#365B50">
+<link rel="icon" href="assets/logo/favicon-web.svg" type="image/svg+xml">
+<style>
+  @font-face { font-family: 'DM Sans'; font-weight: 400; font-display: swap; src: url(assets/fonts/dm-sans-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'DM Sans'; font-weight: 400; font-display: swap; src: url(assets/fonts/dm-sans-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'DM Sans'; font-weight: 600; font-display: swap; src: url(assets/fonts/dm-sans-latin-600-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'DM Sans'; font-weight: 600; font-display: swap; src: url(assets/fonts/dm-sans-latin-ext-600-normal.woff2) format('woff2'); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'DM Sans'; font-weight: 700; font-display: swap; src: url(assets/fonts/dm-sans-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'DM Sans'; font-weight: 700; font-display: swap; src: url(assets/fonts/dm-sans-latin-ext-700-normal.woff2) format('woff2'); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  :root { --green: #365B50; --cream: #FFFAF5; --sage: #E3EBD8; --butter: #F6E8B8; --charcoal: #4E514C; --line: #D9DFD0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'DM Sans', Arial, sans-serif; font-size: 1.0625rem; line-height: 1.65; color: var(--charcoal); background: var(--cream); }
+  a { color: var(--green); text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 12px; }
+  header img { height: 36px; width: auto; display: block; }
+  header .back { font-weight: 600; }
+  main { padding: 48px 0 72px; }
+  h1, h2 { color: var(--green); line-height: 1.2; }
+  h1 { font-size: clamp(2rem, 6vw, 2.6rem); margin: 0 0 .5em; }
+  h2 { font-size: 1.25rem; margin: 2em 0 .4em; }
+  p, ul { margin: 0 0 1em; }
+  .ph { font-weight: 600; background: var(--butter); padding: 0 5px; border-radius: 4px; }
+  .draft { background: var(--butter); border-radius: 12px; padding: 12px 16px; font-size: .95rem; margin-bottom: 32px; }
+  footer { background: var(--green); color: var(--cream); padding: 28px 0; font-size: .95rem; }
+  footer a { color: #fff; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="index.html" aria-label="AI od začátku – úvodní stránka"><img src="assets/logo/logo-hlavni-web.svg" alt="AI od začátku" width="1324" height="492"></a>
+    <a class="back" href="index.html">← Zpět na web</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="draft"><strong>NÁVRH k ověření</strong> (Petra + Zdenál). Není to právní rada. Žlutá místa je potřeba doplnit nebo rozhodnout.</p>
+
+    <h1>Ochrana osobních údajů</h1>
+    <p>Web aiodzacatku.cz je informační. Nemá formulář, nepoužívá cookies ani nástroje na měření návštěvnosti. Osobní údaje od vás dostaneme jen tehdy, když nám sami napíšete e-mail.</p>
+
+    <h2>Kdo vaše údaje zpracovává</h2>
+    <p>Petra Ticháčková, IČO 21931542, Kukelská 4, 198 00 Praha 9, zapsaná v živnostenském rejstříku (dále „my“).<br>
+    Kontakt: <a href="mailto:info@aiodzacatku.cz">info@aiodzacatku.cz</a></p>
+
+    <h2>Jaké údaje a proč</h2>
+    <p>Když nám napíšete na info@aiodzacatku.cz, zpracováváme to, co v e-mailu uvedete: obvykle jméno, e-mailovou adresu, název organizace, telefon a obsah zprávy. Používáme je jen k tomu, abychom vám odpověděly, připravily nabídku workshopu a domluvily se na spolupráci.</p>
+    <p>Právní důvod: jednání o smlouvě na vaši žádost (čl. 6 odst. 1 písm. b) GDPR). Pokud spolupráce vznikne, údaje potřebujeme i k plnění smlouvy a k plnění zákonných povinností (např. účetnictví).</p>
+
+    <h2>Jak dlouho</h2>
+    <p>E-maily, ze kterých spolupráce nevznikne, smažeme nejpozději do <span class="ph">[DOPLNIT: 12 měsíců?]</span> od poslední komunikace. Pokud spolupráce vznikne, uchováváme údaje po dobu spolupráce a dále jen po dobu, kterou vyžadují právní předpisy.</p>
+
+    <h2>Kdo k údajům má přístup</h2>
+    <ul>
+      <li>Lektorky Petra Ticháčková a Karolína Máchová. <span class="ph">[OVĚŘIT: role Karolíny]</span></li>
+      <li>Poskytovatelé, přes které e-mail technicky běží: <span class="ph">[DOPLNIT: poskytovatel e-mailové schránky domény]</span> a Google (Gmail). Tito poskytovatelé mohou zpracovávat údaje i mimo EU v souladu s GDPR. <span class="ph">[OVĚŘIT]</span></li>
+    </ul>
+    <p>Údaje neprodáváme a nepoužíváme je k marketingu.</p>
+
+    <h2>Návštěva webu</h2>
+    <p>Web běží na službě GitHub Pages (GitHub, Inc.). Při návštěvě webu může poskytovatel hostingu z technických a bezpečnostních důvodů zaznamenat vaši IP adresu. My tyto záznamy nevidíme ani nepoužíváme.</p>
+    <p>Web nepoužívá cookies, analytické nástroje ani sledovací kódy. Písmo i obrázky se načítají přímo z našeho webu.</p>
+
+    <h2>Vaše práva</h2>
+    <p>Máte právo požádat nás o přístup ke svým údajům, jejich opravu nebo výmaz, omezení zpracování a vznést námitku. Stačí napsat na <a href="mailto:info@aiodzacatku.cz">info@aiodzacatku.cz</a>.</p>
+    <p>Pokud máte za to, že s údaji nakládáme v rozporu s předpisy, můžete podat stížnost u Úřadu pro ochranu osobních údajů (<a href="https://uoou.gov.cz/" rel="noopener">uoou.gov.cz</a>).</p>
+
+    <p>Platné od: <span class="ph">[DOPLNIT: datum zveřejnění webu]</span></p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Petra Ticháčková · IČO 21931542 · <a href="mailto:info@aiodzacatku.cz">info@aiodzacatku.cz</a>
+  </div>
+</footer>
+</body>
+</html>
